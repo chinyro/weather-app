@@ -1,16 +1,30 @@
 // Search Input
+function updateWeather(response) {
+  let temperatureElement = document.querySelector('#temperature');
+  let temperature = response.data.temperature.current;
+  let currentCity = document.querySelector('#current-city');
+  currentCity.innerHTML = response.data.city;
+  temperatureElement.innerHTML = Math.round(temperature);
+}
+
+function searchCity(city) {
+  // Call API
+  let apiKey = 'b7b6b373ccb0f67b2a046d364t6c1oaf';
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(updateWeather);
+  // Update UI
+}
+
 function handleSearch(e) {
   e.preventDefault();
   let searchInput = document.querySelector('#search-input');
-  let currentCity = document.querySelector('#current-city');
-  currentCity.innerHTML = searchInput.value;
-  // Call API
-  
-  // Search City
+  searchCity(searchInput.value);
 }
 
 let searchFormElement = document.querySelector('#search-form');
 searchFormElement.addEventListener('submit', handleSearch);
+
+searchCity('Mexico');
 
 // function currentTemp(response) {
 //   let tempElement = document.querySelector('#temperature');
