@@ -1,53 +1,67 @@
-function currentTemp(response) {
-  let tempElement = document.querySelector('#temperature');
-  let temperature = Math.round(response.data.temperature.current);
-  let cityElement = document.querySelector('#current-city');
-  cityElement.innerHTML = response.data.city;
-  tempElement.innerHTML = temperature;
+// Search Input
+function handleSearch(e) {
+  e.preventDefault();
+  let searchInput = document.querySelector('#search-input');
+  let currentCity = document.querySelector('#current-city');
+  currentCity.innerHTML = searchInput.value;
+  // Call API
+  
+  // Search City
 }
 
-function search(event) {
-  event.preventDefault();
-  let searchInputElement = document.querySelector('#search-input');
-  let city = searchInputElement.value;
+let searchFormElement = document.querySelector('#search-form');
+searchFormElement.addEventListener('submit', handleSearch);
 
-  let apiKey = 'b7b6b373ccb0f67b2a046d364t6c1oaf';
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+// function currentTemp(response) {
+//   let tempElement = document.querySelector('#temperature');
+//   let temperature = Math.round(response.data.temperature.current);
+//   let cityElement = document.querySelector('#current-city');
+//   cityElement.innerHTML = response.data.city;
+//   tempElement.innerHTML = temperature;
+// }
 
-  axios.get(apiUrl).then(currentTemp);
-}
+// function search(event) {
+//   event.preventDefault();
+//   let searchInputElement = document.querySelector('#search-input');
+//   let city = searchInputElement.value;
 
-function formatDate(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
-  let day = date.getDay();
+//   let apiKey = 'b7b6b373ccb0f67b2a046d364t6c1oaf';
+//   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
+//   axios.get(apiUrl).then(currentTemp);
+// }
 
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
+// function formatDate(date) {
+//   let minutes = date.getMinutes();
+//   let hours = date.getHours();
+//   let day = date.getDay();
 
-  let days = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
+//   if (minutes < 10) {
+//     minutes = `0${minutes}`;
+//   }
 
-  let formattedDay = days[day];
-  return `${formattedDay} ${hours}:${minutes}`;
-}
+//   if (hours < 10) {
+//     hours = `0${hours}`;
+//   }
 
-let searchForm = document.querySelector('#search-form');
-searchForm.addEventListener('submit', search);
+//   let days = [
+//     'Sunday',
+//     'Monday',
+//     'Tuesday',
+//     'Wednesday',
+//     'Thursday',
+//     'Friday',
+//     'Saturday',
+//   ];
 
-let currentDateELement = document.querySelector('#current-date');
-let currentDate = new Date();
+//   let formattedDay = days[day];
+//   return `${formattedDay} ${hours}:${minutes}`;
+// }
 
-currentDateELement.innerHTML = formatDate(currentDate);
+// let searchForm = document.querySelector('#search-form');
+// searchForm.addEventListener('submit', search);
+
+// let currentDateELement = document.querySelector('#current-date');
+// let currentDate = new Date();
+
+// currentDateELement.innerHTML = formatDate(currentDate);
