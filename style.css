@@ -13,7 +13,7 @@ a {
       rgba(232, 87, 237, 0.15) 0%,
       rgba(109, 137, 69, 0.15) 100%
     ),
-    linear-gradient(75deg, rgb(33, 138, 184), rgb(0, 241, 181));
+    linear-gradient(75deg, rgba(33, 139, 184, 0.699), rgba(0, 241, 181, 0.573));
   max-width: 600px;
   margin: 60px auto;
   padding: 30px;
@@ -62,6 +62,7 @@ main {
 
 .current-temperature {
   font-size: 48px;
+  display: flex;
 }
 
 .current-weather {
@@ -87,10 +88,9 @@ main {
 }
 
 .current-temperature-icon {
-  position: relative;
-  top: -8px;
-  font-size: 40px;
-  margin-right: 10px;
+  width: 88px;
+  height: 88px;
+  margin-top: 22px;
 }
 
 .current-temperature-value {
@@ -100,9 +100,8 @@ main {
 }
 
 .current-temperature-unit {
-  font-size: 28px;
-  position: relative;
-  top: -38px;
+  font-size: 33px;
+  margin-top: 26px;
   color: #fbfbfb;
 }
 
