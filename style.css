@@ -110,5 +110,9 @@ footer {
   text-align: center;
   padding-top: 15px;
 
-  color: rgba(244, 243, 247, 0.446);
+  color: rgba(247, 247, 249, 0.842);
+}
+
+footer a {
+  color: #7749bb;
 }
