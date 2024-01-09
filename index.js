@@ -11,7 +11,7 @@ function updateWeather(response) {
   let iconElement = document.querySelector('#icon');
 
   currentCity.innerHTML = response.data.city;
-  timeElement.innerHTML = formateDate(date);
+  timeElement.innerHTML = formatDate(date);
   descriptionElement.innerHTML = response.data.condition.description;
   temperatureElement.innerHTML = Math.round(temperature);
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
@@ -20,7 +20,7 @@ function updateWeather(response) {
 }
 
 // Format Date
-function formateDate(date) {
+function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
   let days = [
@@ -33,7 +33,7 @@ function formateDate(date) {
     'Saturday',
   ];
 
-  let day = days[date.getDate()];
+  let day = days[date.getDay()];
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
@@ -61,4 +61,26 @@ function handleSearch(e) {
 let searchFormElement = document.querySelector('#search-form');
 searchFormElement.addEventListener('submit', handleSearch);
 
-searchCity('Mexico');
+function displayForecast() {
+  let days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+  let forecastHtml = '';
+
+  days.forEach(function (day) {
+    forecastHtml += `
+    <div class="weather-forecast-day">
+    <div class="weather-forecast-date">${day}</div>
+    <div class="weather-forecast-icon">🌤️</div>
+    <div class="weather-forecast-temperatures">
+    <div class="weather-forecast-temperature">
+    <strong>15º</strong>
+    </div>
+    <div class="weather-forecast-temperature">9º</div>
+    </div>
+    </div>`;
+  });
+  let forecastElement = document.querySelector('#forecast');
+  forecastElement.innerHTML = forecastHtml;
+}
+
+searchCity('Sydney');
+displayForecast();
