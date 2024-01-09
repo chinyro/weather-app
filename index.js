@@ -17,6 +17,8 @@ function updateWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
   iconElement.innerHTML = `<img class="current-temperature-icon" src="${response.data.condition.icon_url}" />`;
+
+  getForecast(response.data.city);
 }
 
 // Format Date
@@ -58,10 +60,14 @@ function handleSearch(e) {
   searchCity(searchInput.value);
 }
 
-let searchFormElement = document.querySelector('#search-form');
-searchFormElement.addEventListener('submit', handleSearch);
+function getForecast(city) {
+  let apiKey = 'b7b6b373ccb0f67b2a046d364t6c1oaf';
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
+}
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   let days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
   let forecastHtml = '';
 
@@ -82,5 +88,8 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHtml;
 }
 
+let searchFormElement = document.querySelector('#search-form');
+searchFormElement.addEventListener('submit', handleSearch);
+
 searchCity('Sydney');
-displayForecast();
+
